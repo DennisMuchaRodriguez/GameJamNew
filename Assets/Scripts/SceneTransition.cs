@@ -1,46 +1,57 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class SceneTransition : MonoBehaviour
 {
     [Header("Transition Settings")]
-    public Image fadeImage;
-    public float fadeDuration = 1f;
+    [SerializeField] private Image fadeImage;
+    [SerializeField] private float fadeDuration = 1f;
+    [SerializeField] private Color fadeColor = Color.black;
 
-    public IEnumerator FadeOut()
+    private void Start()
+    {
+        // Comienza con fade in (de negro a transparente)
+        StartCoroutine(FadeIn());
+    }
+
+    public void LoadSceneWithFade(string sceneName)
+    {
+        StartCoroutine(FadeAndLoadScene(sceneName));
+    }
+
+    private IEnumerator FadeAndLoadScene(string sceneName)
+    {
+        // Fade Out (a negro)
+        yield return StartCoroutine(Fade(0f, 1f));
+
+        // Carga la nueva escena
+        SceneManager.LoadScene(sceneName);
+    }
+
+    private IEnumerator FadeIn()
+    {
+        // Fade In (de negro a transparente)
+        yield return StartCoroutine(Fade(1f, 0f));
+    }
+
+    private IEnumerator Fade(float startAlpha, float endAlpha)
     {
         fadeImage.gameObject.SetActive(true);
         float elapsedTime = 0f;
-        Color color = fadeImage.color;
+        Color color = fadeColor;
 
         while (elapsedTime < fadeDuration)
         {
-            color.a = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
+            color.a = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / fadeDuration);
             fadeImage.color = color;
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        color.a = 1f;
+        color.a = endAlpha;
         fadeImage.color = color;
-    }
-
-    public IEnumerator FadeIn()
-    {
-        float elapsedTime = 0f;
-        Color color = fadeImage.color;
-
-        while (elapsedTime < fadeDuration)
-        {
-            color.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
-            fadeImage.color = color;
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        color.a = 0f;
-        fadeImage.color = color;
-        fadeImage.gameObject.SetActive(false);
+        fadeImage.gameObject.SetActive(endAlpha > 0);
     }
 }

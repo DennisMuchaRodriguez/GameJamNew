@@ -8,10 +8,10 @@ public class GameManager : MonoBehaviour
 {
     [Header("Balance Settings")]
     public Slider balanceSlider;
-    public float balanceValue = 0f;        // Empieza en el centro (0)
-    public float baseDriftSpeed = -0.1f;  // Velocidad base hacia negativo
-    private float currentDriftSpeed;      // Velocidad actual
-    public float safeRange = 0.3f;        // Rango seguro para el temporizador
+    public float balanceValue = 0f;       
+    public float baseDriftSpeed = -0.1f;  
+    private float currentDriftSpeed;      
+    public float safeRange = 0.3f;        
 
     [Header("Time Settings")]
     public float totalTime = 60f;
@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public string loseScene = "Derrota";
     public string winScene = "Victoria";
     public Image screenEffect;
+    [SerializeField] private SceneTransition scenetranscribe;
 
     private bool gameEnded = false;
 
@@ -34,10 +35,10 @@ public class GameManager : MonoBehaviour
     {
         currentTime = totalTime;
         balanceValue = 0f;
-        currentDriftSpeed = baseDriftSpeed; // Comienza moviéndose hacia negativo
+        currentDriftSpeed = baseDriftSpeed; 
         gameEnded = false;
 
-        // Configuración inicial del slider
+   
         if (balanceSlider != null)
         {
             balanceSlider.minValue = -1f;
@@ -45,7 +46,6 @@ public class GameManager : MonoBehaviour
             balanceSlider.value = 0f;
         }
 
-        // Configurar texto de tiempo
         if (timeText != null)
         {
             timeText.text = "Tiempo: " + Mathf.Round(currentTime);
@@ -62,16 +62,15 @@ public class GameManager : MonoBehaviour
     {
         if (gameEnded) return;
 
-        // Movimiento automático continuo en la dirección actual
+      
         balanceValue = Mathf.Clamp(balanceValue + currentDriftSpeed * Time.deltaTime, -1f, 1f);
 
-        // Actualizar slider visual
+
         if (balanceSlider != null)
         {
             balanceSlider.value = balanceValue;
         }
 
-        // Actualizar temporizador (solo en zona segura)
         if (Mathf.Abs(balanceValue) <= safeRange)
         {
             currentTime -= Time.deltaTime;
@@ -81,17 +80,17 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // Verificar condiciones de fin de juego
+      
         if (currentTime <= 0)
         {
-            EndGame(true); // Victoria
+            EndGame(true);
         }
         else if (balanceValue <= -1f || balanceValue >= 1f)
         {
-            EndGame(false); // Derrota
+            EndGame(false); 
         }
 
-        // Actualizar efecto visual basado en dirección
+       
         UpdateScreenEffect();
     }
 
@@ -100,8 +99,8 @@ public class GameManager : MonoBehaviour
         if (screenEffect == null) return;
 
         Color targetColor = currentDriftSpeed > 0 ?
-            new Color(0.2f, 0.8f, 0.2f, 0.1f) : // Verde cuando va a positivo
-            new Color(0.8f, 0.2f, 0.2f, 0.1f);  // Rojo cuando va a negativo
+            new Color(0.2f, 0.8f, 0.2f, 0.1f) : 
+            new Color(0.8f, 0.2f, 0.2f, 0.1f); 
 
         screenEffect.color = Color.Lerp(screenEffect.color, targetColor, Time.deltaTime * 5f);
     }
@@ -110,17 +109,17 @@ public class GameManager : MonoBehaviour
     {
         if (gameEnded) return;
 
-        // Aplicar cambio al balance
+     
         balanceValue = Mathf.Clamp(balanceValue + cantidad, -1f, 1f);
 
-        // Cambiar dirección del movimiento según el tipo de objeto
-        if (cantidad > 0) // Objeto positivo
+      
+        if (cantidad > 0) 
         {
-            currentDriftSpeed = Mathf.Abs(baseDriftSpeed); // Movimiento hacia positivo
+            currentDriftSpeed = Mathf.Abs(baseDriftSpeed); 
         }
-        else if (cantidad < 0) // Objeto negativo
+        else if (cantidad < 0)
         {
-            currentDriftSpeed = -Mathf.Abs(baseDriftSpeed); // Movimiento hacia negativo
+            currentDriftSpeed = -Mathf.Abs(baseDriftSpeed);
         }
     }
 
@@ -131,7 +130,8 @@ public class GameManager : MonoBehaviour
 
         if (won)
         {
-            SceneManager.LoadScene(winScene);
+
+            StartCoroutine(GanarConRetraso());
         }
         else
         {
@@ -141,13 +141,25 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PerderConRetraso()
     {
-        // Efecto visual de derrota
-        if (screenEffect != null)
+   
+        if (scenetranscribe != null)
         {
-            screenEffect.color = new Color(0.8f, 0.1f, 0.1f, 0.5f);
+            scenetranscribe.LoadSceneWithFade(loseScene);
+
         }
 
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(loseScene);
+    }
+    IEnumerator GanarConRetraso()
+    {
+
+        if (scenetranscribe != null)
+        {
+            scenetranscribe.LoadSceneWithFade(winScene);
+        }
+
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(winScene);
     }
 }
