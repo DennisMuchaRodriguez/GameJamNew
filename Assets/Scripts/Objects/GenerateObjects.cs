@@ -1,4 +1,4 @@
-using UnityEngine;
+ using UnityEngine;
 
 public class GenerateObjects : MonoBehaviour
 {
@@ -16,12 +16,12 @@ public class GenerateObjects : MonoBehaviour
     [SerializeField] private float minSpawnRate = 0.3f;
     [SerializeField] private float maxSpawnRate = 1.5f;
     [SerializeField] private float spawnRateDecreaseOverTime = 0.01f; // Aumenta frecuencia con el tiempo
-    [SerializeField] private float timeBetweenWaves = 5f; // Tiempo entre oleadas
-    [SerializeField] private int objectsPerWave = 3; // Objetos por oleada
+    [SerializeField] private float timeBetweenWaves = 1f; // Tiempo entre oleadas
+    [SerializeField] private int objectsPerWave = 4; // Objetos por oleada
 
     private float timer;
-    private float nextSpawnTime;
-    private float currentSpawnRate;
+    [SerializeField]private float nextSpawnTime;
+    [SerializeField]private float currentSpawnRate;
     private float waveTimer;
 
     private void Start()
@@ -60,11 +60,7 @@ public class GenerateObjects : MonoBehaviour
     private void SpawnSingleObject()
     {
         GameObject selectedPrefab = objectPrefabs[Random.Range(0, objectPrefabs.Length)];
-        Vector3 spawnPosition = new Vector3(
-            Random.Range(minX, maxX),
-            spawnHeight,
-            spawnArea.position.z
-        );
+        Vector3 spawnPosition = new Vector3(Random.Range(minX, maxX),spawnHeight,spawnArea.position.z);
 
         Instantiate(selectedPrefab, spawnPosition, Quaternion.identity, spawnArea);
     }
@@ -74,7 +70,7 @@ public class GenerateObjects : MonoBehaviour
         for (int i = 0; i < objectsPerWave; i++)
         {
             // Pequeño retraso entre objetos de la misma oleada
-            float delay = Random.Range(0f, 0.5f);
+            float delay = Random.Range(0f, 0.6f);
             Invoke("SpawnSingleObject", delay);
         }
     }

@@ -122,5 +122,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puntosBalance: 0.15
-  moveSpeed: -7
+  moveSpeed: -30
   destroyPositionZ: -10
