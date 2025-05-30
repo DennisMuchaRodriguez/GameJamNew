@@ -3,17 +3,24 @@ using UnityEngine;
 public class ObjetoInteractivo : MonoBehaviour
 {
     [Header("Configuración")]
-    public float puntosBalance = 0.1f; // Cantidad más pequeña para ajuste gradual
-    public float VelocityZ = -5f;
-    public float MinX = -10f;
+    public float puntosBalance = 0.2f; // Valores más grandes para mayor impacto
+    public float moveSpeed = -5f;
+    public float destroyPositionZ = -10f;
+
+    private GameManager gameManager;
+
+    void Start()
+    {
+        gameManager = FindFirstObjectByType<GameManager>();
+    }
 
     void Update()
     {
-        // Movimiento del objeto
-        transform.Translate(0, 0, VelocityZ * Time.deltaTime);
+        // Movimiento hacia el jugador
+        transform.Translate(0, 0, moveSpeed * Time.deltaTime);
 
-        // Destruir si sale de pantalla
-        if (transform.position.z < MinX)
+        // Destruir si pasa la posición límite
+        if (transform.position.z < destroyPositionZ)
         {
             Destroy(gameObject);
         }
@@ -21,9 +28,9 @@ public class ObjetoInteractivo : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && GameManager.instance != null)
+        if (other.CompareTag("Player") && gameManager != null)
         {
-            GameManager.instance.ModificarBalance(puntosBalance);
+            gameManager.ModificarBalance(puntosBalance);
             Destroy(gameObject);
         }
     }
