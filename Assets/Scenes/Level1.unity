@@ -4549,6 +4549,7 @@ MonoBehaviour:
   - {fileID: 927059367764370998, guid: f0a90d8b2b9547c45b3fa734b9672ea3, type: 3}
   - {fileID: 2100105509294814174, guid: c1bb47a02d7090549bdcde9fefbe10c3, type: 3}
   - {fileID: 927059367764370998, guid: 1ec1d631f7f206c4a92b429fc64b5a8e, type: 3}
+  - {fileID: 8099560262042371773, guid: 9414b1cbad714704ab5b93dae5521ae2, type: 3}
   spawnArea: {fileID: 1842558357}
   minX: -5
   maxX: 5

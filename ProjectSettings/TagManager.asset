@@ -10,6 +10,7 @@ TagManager:
   - BalanceSlider
   - TimeText
   - ScreenEffect
+  - debuff1
   layers:
   - Default
   - TransparentFX
