@@ -2673,7 +2673,7 @@ GameObject:
   - component: {fileID: 1112619375}
   - component: {fileID: 1112619374}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4548,6 +4548,7 @@ MonoBehaviour:
   objectPrefabs:
   - {fileID: 927059367764370998, guid: f0a90d8b2b9547c45b3fa734b9672ea3, type: 3}
   - {fileID: 2100105509294814174, guid: c1bb47a02d7090549bdcde9fefbe10c3, type: 3}
+  - {fileID: 927059367764370998, guid: 1ec1d631f7f206c4a92b429fc64b5a8e, type: 3}
   spawnArea: {fileID: 1842558357}
   minX: -5
   maxX: 5

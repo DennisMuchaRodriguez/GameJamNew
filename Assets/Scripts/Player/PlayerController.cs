@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
@@ -11,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private Vector3 moveDirection;
     private bool isGrounded;
-
+   // [SerializeField] private float TimeBuff;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -55,5 +57,16 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
         }
+    }
+    public  void StartLento(float value, int     timebuff)
+    {
+        StartCoroutine(Lento(value, timebuff));
+    }
+    public IEnumerator Lento(float value, int time)
+    {
+        float originalMoveSpeed = moveSpeed;
+        moveSpeed = value; 
+        yield return new WaitForSeconds(time); 
+        moveSpeed = originalMoveSpeed; 
     }
 }
