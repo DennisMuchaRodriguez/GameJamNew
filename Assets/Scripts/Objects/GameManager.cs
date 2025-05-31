@@ -3,15 +3,15 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
-
+using Unity.Cinemachine;
 public class GameManager : MonoBehaviour
 {
     [Header("Balance Settings")]
     public Slider balanceSlider;
-    public float balanceValue = 0f;       
-    public float baseDriftSpeed = -0.1f;  
-    private float currentDriftSpeed;      
-    public float safeRange = 0.3f;        
+    public float balanceValue = 0f;
+    public float baseDriftSpeed = -0.1f;
+    private float currentDriftSpeed;
+    public float safeRange = 0.3f;
 
     [Header("Time Settings")]
     public float totalTime = 60f;
@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     public string winScene = "Victoria";
     public Image screenEffect;
     [SerializeField] private SceneTransition scenetranscribe;
+    [SerializeField] private CinemachineImpulseSource impulseSource;
+    private bool canShake = true;
+    [SerializeField] private float shakeCooldown = 10f;
 
     private bool gameEnded = false;
 
@@ -35,10 +38,10 @@ public class GameManager : MonoBehaviour
     {
         currentTime = totalTime;
         balanceValue = 0f;
-        currentDriftSpeed = baseDriftSpeed; 
+        currentDriftSpeed = baseDriftSpeed;
         gameEnded = false;
 
-   
+
         if (balanceSlider != null)
         {
             balanceSlider.minValue = -1f;
@@ -62,7 +65,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameEnded) return;
 
-      
+
         balanceValue = Mathf.Clamp(balanceValue + currentDriftSpeed * Time.deltaTime, -1f, 1f);
 
 
@@ -80,17 +83,25 @@ public class GameManager : MonoBehaviour
             }
         }
 
-      
+
         if (currentTime <= 0)
         {
             EndGame(true);
         }
         else if (balanceValue <= -1f || balanceValue >= 1f)
         {
-            EndGame(false); 
+            EndGame(false);
         }
 
-       
+        if (balanceValue < -0.75f && canShake)
+        {
+            if (impulseSource != null)
+            {
+                impulseSource.GenerateImpulse();
+                StartCoroutine(ShakeCooldown());
+            }
+        }
+
         UpdateScreenEffect();
     }
 
@@ -99,8 +110,8 @@ public class GameManager : MonoBehaviour
         if (screenEffect == null) return;
 
         Color targetColor = currentDriftSpeed > 0 ?
-            new Color(0.2f, 0.8f, 0.2f, 0.1f) : 
-            new Color(0.8f, 0.2f, 0.2f, 0.1f); 
+            new Color(0.2f, 0.8f, 0.2f, 0.1f) :
+            new Color(0.8f, 0.2f, 0.2f, 0.1f);
 
         screenEffect.color = Color.Lerp(screenEffect.color, targetColor, Time.deltaTime * 5f);
     }
@@ -109,18 +120,24 @@ public class GameManager : MonoBehaviour
     {
         if (gameEnded) return;
 
-     
+
         balanceValue = Mathf.Clamp(balanceValue + cantidad, -1f, 1f);
 
-      
-        if (cantidad > 0) 
+
+        if (cantidad > 0)
         {
-            currentDriftSpeed = Mathf.Abs(baseDriftSpeed); 
+            currentDriftSpeed = Mathf.Abs(baseDriftSpeed);
         }
         else if (cantidad < 0)
         {
             currentDriftSpeed = -Mathf.Abs(baseDriftSpeed);
         }
+    }
+    IEnumerator ShakeCooldown()
+    {
+        canShake = false;
+        yield return new WaitForSeconds(shakeCooldown);
+        canShake = true;
     }
 
     void EndGame(bool won)
@@ -141,7 +158,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PerderConRetraso()
     {
-   
+
         if (scenetranscribe != null)
         {
             scenetranscribe.LoadSceneWithFade(loseScene);
