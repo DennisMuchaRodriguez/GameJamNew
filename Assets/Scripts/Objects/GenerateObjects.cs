@@ -60,9 +60,19 @@ public class GenerateObjects : MonoBehaviour
     private void SpawnSingleObject()
     {
         GameObject selectedPrefab = objectPrefabs[Random.Range(0, objectPrefabs.Length)];
-        Vector3 spawnPosition = new Vector3(Random.Range(minX, maxX),spawnHeight,spawnArea.position.z);
+        Vector3 spawnPosition = new Vector3(
+            Random.Range(minX, maxX),
+            spawnHeight,
+            spawnArea.position.z
+        );
 
-        Instantiate(selectedPrefab, spawnPosition, Quaternion.identity, spawnArea);
+        // Instanciar manteniendo la rotación del prefab y como hijo del spawnArea
+        Instantiate(
+            selectedPrefab,
+            spawnPosition,
+            selectedPrefab.transform.rotation,  // Usamos la rotación del prefab
+            spawnArea
+        );
     }
 
     private void SpawnWave()

@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
-        // Invertir controles si el debuff está activo
+       
         if (isControlsInverted)
         {
             horizontalInput *= -1;
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("debuff1")) // Debuff: invertir controles
+        if (other.gameObject.CompareTag("debuff1")) 
         {
             StartCoroutine(InvertControlsForSeconds(5f));
         }
