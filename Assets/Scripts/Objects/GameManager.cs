@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public float balanceValue = 0f;
     public float baseDriftSpeed = -0.1f;
     private float currentDriftSpeed;
-    public float safeRange = 0.3f;
+    public float safeRange = 0.47f;
 
     [Header("Time Settings")]
     public float totalTime = 60f;
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
             EndGame(false);
         }
 
-        if (balanceValue < -0.75f && canShake)
+        if (balanceValue < -0.47f && canShake)
         {
             if (impulseSource != null)
             {
@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(ShakeCooldown());
             }
         }
-        if (balanceValue > 0.75f && canShake)
+        if (balanceValue > 0.47f && canShake)
         {
             if (impulseSource != null)
             {
