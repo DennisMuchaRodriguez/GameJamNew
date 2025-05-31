@@ -7,11 +7,13 @@ public class UIController : MonoBehaviour
     public GameObject panelInformacion;
     public GameObject panelCreditos;
     public GameObject panelMusica;
+    public GameObject panelObjetos;
 
     [Header("Referencias RectTransform")]
     public RectTransform panelInfo;
     public RectTransform panelCred;
     public RectTransform panelMusic;
+    public RectTransform panelObjets;
 
     [Header("Animación")]
     public float duracion = 0.5f;
@@ -32,6 +34,23 @@ public class UIController : MonoBehaviour
             panelInfo.DOAnchorPos(new Vector2(distanciaSalida, 0), duracion)
                      .SetEase(Ease.InBack)
                      .OnComplete(() => panelInformacion.SetActive(false));
+        }
+    }
+    public void MostrarObjetos (bool mostrar)
+    {
+        if (panelObjetos == null || panelObjets == null) return;
+
+        panelObjetos.SetActive(true);
+        if (mostrar)
+        {
+            panelObjets.anchoredPosition = new Vector2(distanciaSalida, 0);
+            panelObjets.DOAnchorPos(Vector2.zero, duracion).SetEase(Ease.OutBack);
+        }
+        else
+        {
+             panelObjets.DOAnchorPos(new Vector2(distanciaSalida, 0), duracion)
+                     .SetEase(Ease.InBack)
+                     .OnComplete(() => panelObjetos.SetActive(false));
         }
     }
 
