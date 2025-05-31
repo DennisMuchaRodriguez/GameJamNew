@@ -7343,6 +7343,11 @@ MonoBehaviour:
   panelInformacion: {fileID: 2094884620}
   panelCreditos: {fileID: 1737584116}
   panelMusica: {fileID: 992728006}
+  panelInfo: {fileID: 2094884621}
+  panelCred: {fileID: 1737584117}
+  panelMusic: {fileID: 992728007}
+  duracion: 0.5
+  distanciaSalida: 1000
 --- !u!4 &1996345525
 Transform:
   m_ObjectHideFlags: 0
