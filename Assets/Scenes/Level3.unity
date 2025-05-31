@@ -4441,8 +4441,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectPrefabs:
-  - {fileID: 927059367764370998, guid: f0a90d8b2b9547c45b3fa734b9672ea3, type: 3}
-  - {fileID: 2100105509294814174, guid: c1bb47a02d7090549bdcde9fefbe10c3, type: 3}
+  - {fileID: 927059367764370998, guid: 1ec1d631f7f206c4a92b429fc64b5a8e, type: 3}
+  - {fileID: 8099560262042371773, guid: 9414b1cbad714704ab5b93dae5521ae2, type: 3}
+  - {fileID: 924999144085602619, guid: 1bc2ecfcbfd97914dbfc6eba3afafad3, type: 3}
+  - {fileID: 1165972813805914872, guid: 69265700e4870bc4ba08d151471e040f, type: 3}
+  - {fileID: 8654555441997272015, guid: 9a357749a6222244590d823d45583436, type: 3}
+  - {fileID: 233885788852033166, guid: 05121bb25fe2e8548940953569b6e5ad, type: 3}
   spawnArea: {fileID: 1842558357}
   minX: -5
   maxX: 5
@@ -4451,7 +4455,7 @@ MonoBehaviour:
   minSpawnRate: 1
   maxSpawnRate: 1.7
   spawnRateDecreaseOverTime: 0.06
-  timeBetweenWaves: 1.8
+  timeBetweenWaves: 1.2
   objectsPerWave: 6
   nextSpawnTime: 0
   currentSpawnRate: 0

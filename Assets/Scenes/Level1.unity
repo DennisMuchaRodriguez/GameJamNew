@@ -4754,14 +4754,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPrefabs:
   - {fileID: 5345403408706086602, guid: e15f7587c837e65459d9bd32a55a2c01, type: 3}
-  - {fileID: 6312367405555446241, guid: 3593f6596541a284f8aebeeb8cd79576, type: 3}
   - {fileID: 927059367764370998, guid: 1ec1d631f7f206c4a92b429fc64b5a8e, type: 3}
   - {fileID: 8099560262042371773, guid: 9414b1cbad714704ab5b93dae5521ae2, type: 3}
-  - {fileID: 576500270718199486, guid: 49b77c1745462724994b9a19bf171737, type: 3}
-  - {fileID: 950671429806896768, guid: c326105c77d64ea439d86ea88af11cf4, type: 3}
+  - {fileID: 4065872196045581575, guid: 8423f781b5963ae499c233c51dc8ca60, type: 3}
   - {fileID: 8654555441997272015, guid: 9a357749a6222244590d823d45583436, type: 3}
-  - {fileID: 1990371136817968533, guid: 7535938ef3330d446b59a10155e37ec5, type: 3}
-  - {fileID: 2797364713957289932, guid: 15a6771bcc349f94f9a581082cb5b1bb, type: 3}
+  - {fileID: 2808127814091667429, guid: 5c20e946d8e7a984c9a879ecbd10896f, type: 3}
+  - {fileID: 924999144085602619, guid: 1bc2ecfcbfd97914dbfc6eba3afafad3, type: 3}
+  - {fileID: 3647120410063432030, guid: 35bdd919b00d6864d86d0edb608daea0, type: 3}
   spawnArea: {fileID: 1842558357}
   minX: -5
   maxX: 5

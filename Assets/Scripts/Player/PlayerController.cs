@@ -33,11 +33,7 @@ public class PlayerController : MonoBehaviour
 
         moveDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
-        }
+
     }
 
     void FixedUpdate()

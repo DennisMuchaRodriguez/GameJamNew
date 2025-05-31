@@ -113,6 +113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20c4680240b137b45aaf97b5a090bf34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puntosBalance: -0.2
+  puntosBalance: 0.2
   moveSpeed: -29
   destroyPositionZ: -10
