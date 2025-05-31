@@ -101,7 +101,14 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(ShakeCooldown());
             }
         }
-
+        if (balanceValue > 0.75f && canShake)
+        {
+            if (impulseSource != null)
+            {
+                impulseSource.GenerateImpulse();
+                StartCoroutine(ShakeCooldown());
+            }
+        }
         UpdateScreenEffect();
     }
 
