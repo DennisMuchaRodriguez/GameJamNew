@@ -4792,8 +4792,9 @@ MonoBehaviour:
   menuButton: {fileID: 1237521716}
   audioButton: {fileID: 820903463}
   audioMenuPanel: {fileID: 1296506054}
+  closeAudioButton: {fileID: 109701218}
   mainMenuScene: MenuGab 3
-  pauseKey: 111
+  pauseKey: 32
 --- !u!4 &1388235741
 Transform:
   m_ObjectHideFlags: 0
@@ -6011,6 +6012,7 @@ MonoBehaviour:
   - {fileID: 3647120410063432030, guid: 35bdd919b00d6864d86d0edb608daea0, type: 3}
   - {fileID: 8099560262042371773, guid: 9414b1cbad714704ab5b93dae5521ae2, type: 3}
   - {fileID: 927059367764370998, guid: 1ec1d631f7f206c4a92b429fc64b5a8e, type: 3}
+  - {fileID: 6585740898713891257, guid: 302d505c47c83d9419dea6860948a2e2, type: 3}
   spawnArea: {fileID: 1842558357}
   minX: -5
   maxX: 5

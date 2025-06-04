@@ -516,8 +516,9 @@ MonoBehaviour:
   menuButton: {fileID: 1491064145}
   audioButton: {fileID: 524733572}
   audioMenuPanel: {fileID: 469910202}
+  closeAudioButton: {fileID: 1224788857}
   mainMenuScene: MenuGab 3
-  pauseKey: 111
+  pauseKey: 32
 --- !u!4 &105887535
 Transform:
   m_ObjectHideFlags: 0

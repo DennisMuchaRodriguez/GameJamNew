@@ -1814,8 +1814,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70.26
-  m_fontSizeBase: 70.26
+  m_fontSize: 57.74
+  m_fontSizeBase: 57.74
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5516,8 +5516,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 95.17
-  m_fontSizeBase: 95.17
+  m_fontSize: 57.74
+  m_fontSizeBase: 57.74
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6456,8 +6456,9 @@ MonoBehaviour:
   menuButton: {fileID: 739425865}
   audioButton: {fileID: 466111558}
   audioMenuPanel: {fileID: 1152010111}
+  closeAudioButton: {fileID: 1187284981}
   mainMenuScene: MenuGab 3
-  pauseKey: 111
+  pauseKey: 32
 --- !u!4 &2049082428
 Transform:
   m_ObjectHideFlags: 0

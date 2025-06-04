@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puntosBalance: -0.2
-  moveSpeed: -29
+  moveSpeed: -24
   destroyPositionZ: -10
 --- !u!65 &6681237639262084051
 BoxCollider:
